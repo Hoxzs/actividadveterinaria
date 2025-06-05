@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <h3 class="text-center">{{ titulo }}</h3>
+    <form class="mt-4" [formGroup]="formDato" (ngSubmit)="agregarOEditar()">
+        <div class="form-container">
+            <div class="mb-3 row">
+                <label for="txtnombre" class="col-sm-3 col-form-label">Nombre</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="nombre" pattern="[A-Za-zÁ-Úá-ú ]+" maxlength="30" formControlName="nombre" required placeholder="Ingrese el nombre del empleado">
+                    <div class="validaciones" *ngIf="formDato.get('nombre')?.invalid && (formDato.get('nombre')?.dirty || formDato.get('nombre')?.touched)">
+                        <div *ngIf="formDato.get('nombre')?.hasError('required')"><p>El nombre del empleado es obligatorio.</p></div>
+                        <div *ngIf="formDato.get('nombre')?.hasError('pattern')"><p>El nombre solo puede contener letras.</p></div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="mb-3 row">
+                <label for="txtpaterno" class="col-sm-3 col-form-label">Apellido paterno</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="txtpaterno" pattern="[A-Za-zÁ-Úá-ú]+"
+                                maxlength="20" formControlName="appaterno" required>
+                            <div class="validaciones"
+                                *ngIf="formDato.get('appaterno')?.invalid && (formDato.get('appaterno')?.dirty || formDato.get('appaterno')?.touched)">
+                                <div *ngIf="formDato.get('appaterno')?.hasError('required')"><p>El apellido del veterinario es obligatorio.</p></div>
+                                <div *ngIf="formDato.get('appaterno')?.hasError('pattern')"><p>El apellido solo puede contener letras.</p></div>
+                            </div>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="txtmaterno" class="col-sm-3 col-form-label">Apellido materno</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="txtmaterno" pattern="[A-Za-zÁ-Úá-ú]+" maxlength="20" formControlName="apmaterno">
+                            <div class="validaciones" *ngIf="formDato.get('apmaterno')?.dirty || formDato.get('appaterno')?.touched">
+                                <div *ngIf="formDato.get('apmaterno')?.hasError('pattern')"><p>El apellido solo puede contener letras.</p></div>
+                            </div>
+                </div>
+            </div> -->
+            <div class="mb-3 row">
+                <label for="fechaNacimiento" class="col-sm-3 col-form-label">Fecha de nacimiento</label>
+                <div class="col-sm-9">
+                    <input type="date" class="form-control" id="fechaNacimiento" formControlName="fechanacimiento" required placeholder="Establezca su fecha de nacimiento">
+                            <!-- Mensajes de validaciones para el formulario -->
+                            <div class="validaciones" *ngIf="formDato.get('fechanacimiento')?.invalid && (formDato.get('fechanacimiento')?.dirty || formDato.get('fechanacimiento')?.touched)">
+                                <div *ngIf="formDato.get('fechanacimiento')?.hasError('required')"><p>La fecha del campo es obligatoria.</p></div>
+                                <div *ngIf="formDato.get('fechanacimiento')?.hasError('pattern')"><p>Utiliza el formato adecuado para la fecha.</p></div>
+                            </div>
+                </div>
+            </div>
+            <!-- <div class="mb-3 row">
+                <label for="txtespecialidad" class="col-sm-3 col-form-label">Especialidad</label>
+                <div class="col-sm-9">
+                    <select id="txtespecialidad" name="txtespecialidad" class="form-control" formControlName="especialidad">
+                        <option value="químico fármaco biólogo">químico fármaco biólogo</option>
+                        <option value="médico general">médico general</option>
+                    </select>
+                </div>
+            </div>             -->
+            <!-- <div class="mb-3 row">
+                <label for="numtelefono" class="col-sm-3 col-form-label">Telefono</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="numtelefono" pattern="[0-9]+" inputmode="numeric" minlength="10" maxlength="10" formControlName="telefono" required>
+                    <div class="validaciones" *ngIf="formDato.get('telefono')?.invalid && (formDato.get('telefono')?.dirty || formDato.get('telefono')?.touched)">
+                        <div *ngIf="formDato.get('telefono')?.hasError('required')"><p>El número teléfono del veterinario es obligatorio.</p></div>
+                        <div *ngIf="formDato.get('telefono')?.hasError('pattern')"><p>El número de teléfono solo puede contener números.</p></div>
+                        <div *ngIf="formDato.get('telefono')?.hasError('minlength')"><p>El número de teléfono debe contener 10 caracteres</p></div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="mb-3 row">
+                <label for="curp" class="col-sm-3 col-form-label">CURP</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="curp" pattern="[A-Za-z0-9]+" maxlength="18" formControlName="curp" required placeholder="Ingrese la curp de empleado">
+                    <div class="validaciones" *ngIf="formDato.get('curp')?.invalid && (formDato.get('curp')?.dirty || formDato.get('curp')?.touched)">
+                        <div *ngIf="formDato.get('curp')?.hasError('required')"><p>El CURP del empleado es obligatorio.</p></div>
+                        
+                        <div *ngIf="formDato.get('curp')?.hasError('pattern')"><p>El CURP solo puede contener letras y números.</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="salario" class="col-sm-3 col-form-label">Salario</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="salario" min="0" formControlName="salario" required placeholder="Ingrese el salario del empleado">
+                    <div class="validaciones" *ngIf="formDato.get('salario')?.invalid && (formDato.get('salario')?.dirty || formDato.get('salario')?.touched)">
+                        <div *ngIf="formDato.get('salario')?.hasError('required')"><p>El salario del empleado es obligatorio.</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-9">
+                    <!-- <button type="submit" class="btn btn-primary me-2" [disabled]="formDato.invalid" (click)="generarPDF()" (click)="generarJSON()">Guardar</button> -->
+                    <button type="submit" class="btn btn-primary me-2" [disabled]="formDato.invalid">Guardar</button>
+                    <div class="validaciones" *ngIf="formDato.invalid && submitted">
+                        <p>Por favor, ingresa correctamente todos los campos antes de guardar.</p>
+                    </div>
+                    <button type="submit" class="btn btn-primary me-2" routerLink="/menu">Regresar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

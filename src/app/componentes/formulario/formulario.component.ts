@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatosService } from 'src/app/servicios/datos.service';
-import * as jsPDF from 'jspdf';
 import { HttpClient } from '@angular/common/http';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 
